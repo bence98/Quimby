@@ -42,6 +42,8 @@ public class ItemChestVacator extends Item{
 		if(player.isSneaking()) return;
 		InventoryEnderChest ender = player.getInventoryEnderChest();
 		TileEntity te=world.getTileEntity(pos);
+		if(te==null)
+			return;
 		NBTTagCompound tag=stack.getOrCreateSubCompound("vacator");
 		if(te.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side)){
 			transfer(ender, te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side), tag.getBoolean("mode"));
