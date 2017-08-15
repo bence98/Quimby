@@ -5,3 +5,11 @@ item.itemDisarmWand.name=Wand of Expelliarmus
 item.itemChestVacator.name=Chest Vacator
 item.itemRake.name=Gardening rake
 item.itemShoes.name=Trekking shoes (WIP)
+item.itemXpWand.name=Wand of Experience
+
+chat.xpwand.set=Set mode to %s
+chat.xpwand.get=Mode: %s
+chat.xpwand.mode.SMALL=Small donation
+chat.xpwand.mode.MEDIUM=Medium packet
+chat.xpwand.mode.LARGE=Large blow
+chat.xpwand.mode.HUGE=Huge burst
