@@ -32,9 +32,9 @@ public class ItemShoes extends Item{
 		if(equipmentSlot.equals(EntityEquipmentSlot.FEET)){
 			double boost=0.05;
 			if(attribs.getWetness()>-25) boost-=(attribs.getWetness()*0.001);
-			map.put(SharedMonsterAttributes.MOVEMENT_SPEED.getAttributeUnlocalizedName(), new AttributeModifier(feetAttribID, "Walking speed", boost, 0));
+			map.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), new AttributeModifier(feetAttribID, "Walking speed", boost, 0));
 			double armor=2-(attribs.getBurnt()*0.015);
-			map.put(SharedMonsterAttributes.ARMOR.getAttributeUnlocalizedName(), new AttributeModifier(feetAttribID, "Armor", armor, 0));
+			map.put(SharedMonsterAttributes.ARMOR.getName(), new AttributeModifier(feetAttribID, "Armor", armor, 0));
 		}
 		return map;
 	}
@@ -102,12 +102,12 @@ public class ItemShoes extends Item{
 	
 	public static ShoeAttribs getAttributes(ItemStack is){
 		ShoeAttribs ret=new ShoeAttribs();
-		ret.readFromNBT(is.getSubCompound("attribs", true));
+		ret.readFromNBT(is.getOrCreateSubCompound("attribs"));
 		return ret;
 	}
 	
 	public static void setAttributes(ItemStack is, ShoeAttribs attribs){
-		attribs.writeToNBT(is.getSubCompound("attribs", true));
+		attribs.writeToNBT(is.getOrCreateSubCompound("attribs"));
 	}
 	
 	@Override

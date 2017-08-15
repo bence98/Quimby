@@ -14,7 +14,8 @@ import net.minecraft.world.World;
 
 public class ItemRake extends Item{
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ){
+	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ){
+		
 		IBlockState b=worldIn.getBlockState(pos);
 		RakeRecipe rec=RakeRecipes.inst.getRecipe(b);
 		if(rec!=null){
@@ -22,13 +23,13 @@ public class ItemRake extends Item{
 				for(Map.Entry<ItemStack, Integer>e:rec.getDrops().entrySet()){
 					int n=worldIn.rand.nextInt(100);
 					if(e.getValue()>n){
-						worldIn.spawnEntityInWorld(new EntityItem(worldIn, pos.getX(), pos.getY()+1, pos.getZ(), e.getKey()));
+						worldIn.spawnEntity(new EntityItem(worldIn, pos.getX(), pos.getY()+1, pos.getZ(), e.getKey()));
 					}
 				}
 				worldIn.setBlockState(pos, rec.getOutput());
 			}
 			return EnumActionResult.SUCCESS;
 		}
-		return super.onItemUse(stack, playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);
+		return super.onItemUse(playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);
 	}
 }

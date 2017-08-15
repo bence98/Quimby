@@ -11,7 +11,7 @@ public class HandlerVacator implements IMessageHandler<PacketVacator, IMessage>{
 		EntityPlayer player=ctx.getServerHandler().playerEntity;
 		ItemStack vacatorStack=player.getHeldItem(message.hand);
 		
-		ItemChestVacator.processBlockClick(vacatorStack, player, player.worldObj, message.pos, message.side);
+		ItemChestVacator.processBlockClick(vacatorStack, player, player.world, message.pos, message.side);
 		return null;
 	}
 

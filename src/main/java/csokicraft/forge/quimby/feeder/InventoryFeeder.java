@@ -42,11 +42,10 @@ public class InventoryFeeder implements IInventory{
 	public ItemStack decrStackSize(int index, int count){
 		ItemStack is=getStackInSlot(0);
 		ItemStack ret=is.copy();
-		int trans=Math.min(is.stackSize, count);
-		ret.stackSize=trans;
+		int trans=Math.min(is.getCount(), count);
+		ret.setCount(trans);
 		
-		is.stackSize-=trans;
-		if(is.stackSize==0) is=null;
+		is.setCount(is.getCount()-trans);
 		setInventorySlotContents(0, is);
 		
 		return ret;
@@ -76,7 +75,7 @@ public class InventoryFeeder implements IInventory{
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer player){
+	public boolean isUsableByPlayer(EntityPlayer player){
 		return true;
 	}
 
@@ -108,7 +107,13 @@ public class InventoryFeeder implements IInventory{
 
 	@Override
 	public void clear(){
-		setInventorySlotContents(0, null);
+		setInventorySlotContents(0, ItemStack.EMPTY);
+	}
+
+	@Override
+	public boolean isEmpty(){
+		slot=ItemAutoFeeder.getStored(stack);
+		return slot.isEmpty();
 	}
 
 }

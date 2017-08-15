@@ -34,7 +34,8 @@ public class ItemWarpingMagnet extends Item{
 	}
 	
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand){
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand){
+		ItemStack itemStackIn=playerIn.getHeldItem(hand);
 		if(itemStackIn.getItemDamage()==0)
 			itemStackIn.setItemDamage(1);
 		else

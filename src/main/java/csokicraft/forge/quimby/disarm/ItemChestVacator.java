@@ -17,17 +17,19 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 
 public class ItemChestVacator extends Item{
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand){
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand){
+		ItemStack itemStackIn=playerIn.getHeldItem(hand);
 		if(playerIn.isSneaking()){
-			NBTTagCompound tag=itemStackIn.getSubCompound("vacator", true);
+			NBTTagCompound tag=itemStackIn.getOrCreateSubCompound("vacator");
 			tag.setBoolean("mode", !tag.getBoolean("mode"));
 			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
 		}
-		return super.onItemRightClick(itemStackIn, worldIn, playerIn, hand);
+		return super.onItemRightClick(worldIn, playerIn, hand);
 	}
 	
 	@Override
-	public EnumActionResult onItemUseFirst(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand){
+	public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand){
+		ItemStack stack=player.getHeldItem(hand);
 		if(!world.isRemote){
 			processBlockClick(stack, player, world, pos, side);
 		}else{
@@ -40,7 +42,7 @@ public class ItemChestVacator extends Item{
 		if(player.isSneaking()) return;
 		InventoryEnderChest ender = player.getInventoryEnderChest();
 		TileEntity te=world.getTileEntity(pos);
-		NBTTagCompound tag=stack.getSubCompound("vacator", true);
+		NBTTagCompound tag=stack.getOrCreateSubCompound("vacator");
 		if(te.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side)){
 			transfer(ender, te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side), tag.getBoolean("mode"));
 		}else if(te instanceof IInventory){
@@ -174,7 +176,7 @@ public class ItemChestVacator extends Item{
 	*/
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced){
-		NBTTagCompound tag=stack.getSubCompound("vacator", true);
+		NBTTagCompound tag=stack.getOrCreateSubCompound("vacator");
 		if(tag.getBoolean("mode"))
 			tooltip.add("Dump mode");
 		else

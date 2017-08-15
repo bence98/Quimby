@@ -15,11 +15,12 @@ import net.minecraft.world.World;
 
 public class ItemXpWand extends Item{
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack is, World w, EntityPlayer p, EnumHand hand){
+	public ActionResult<ItemStack> onItemRightClick(World w, EntityPlayer p, EnumHand hand){
+		ItemStack is=p.getHeldItem(hand);
 		if(p.isSneaking()){
 			setMode(is, XpWandMode.next(getMode(is)));
 			if(!w.isRemote)
-				p.addChatComponentMessage(new TextComponentString(I18n.format("chat.xpwand.set", getMode(is).localisedName())));
+				p.sendMessage(new TextComponentString(I18n.format("chat.xpwand.set", getMode(is).localisedName())));
 		}else if(w.isRemote){
 			Quimby.net.sendToServer(new PacketXpWand(p, hand));
 		}
@@ -33,7 +34,7 @@ public class ItemXpWand extends Item{
 	}
 	
 	public static void shootXp(EntityPlayer p, ItemStack is, Vec3d lookVec){
-		World w=p.worldObj;
+		World w=p.world;
 		int qty=Math.min(p.experienceTotal, getMode(is).getXpAmount());
 		removeXp(p, qty);
 		double  newX=p.posX+lookVec.xCoord,
@@ -41,7 +42,7 @@ public class ItemXpWand extends Item{
 				newZ=p.posZ+lookVec.zCoord;
 		EntityXPOrb ent=new EntityXPOrb(w, newX, newY, newZ, qty);
 		ent.setVelocity(lookVec.xCoord, lookVec.yCoord, lookVec.zCoord);
-		w.spawnEntityInWorld(ent);
+		w.spawnEntity(ent);
 	}
 	
 	protected static void removeXp(EntityPlayer p, int qty){
@@ -61,12 +62,12 @@ public class ItemXpWand extends Item{
 	}
 	
 	protected static XpWandMode getMode(ItemStack is){
-		NBTTagCompound nbt=is.getSubCompound("xpwand", true);
+		NBTTagCompound nbt=is.getOrCreateSubCompound("xpwand");
 		return XpWandMode.values()[nbt.getInteger("mode")];
 	}
 	
 	protected static void setMode(ItemStack is, XpWandMode mode){
-		NBTTagCompound nbt=is.getSubCompound("xpwand", true);
+		NBTTagCompound nbt=is.getOrCreateSubCompound("xpwand");
 		nbt.setInteger("mode", mode.ordinal());
 	}
 	
