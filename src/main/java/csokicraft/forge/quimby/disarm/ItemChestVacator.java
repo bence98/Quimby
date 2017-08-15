@@ -3,7 +3,7 @@ package csokicraft.forge.quimby.disarm;
 import java.util.List;
 
 import csokicraft.forge.quimby.Quimby;
-import csokicraft.util.mcforge.UtilMcForge10;
+import csokicraft.util.mcforge.UtilMcForge11;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
@@ -54,17 +54,17 @@ public class ItemChestVacator extends Item{
 
 	private static void transfer(IInventory ender, IInventory te, boolean mode){
 		if(mode){//ender->te
-			UtilMcForge10.moveAll(new InvWrapper(ender), new InvWrapper(te));
+			UtilMcForge11.moveAll(new InvWrapper(ender), new InvWrapper(te));
 		}else{//te->ender
-			UtilMcForge10.moveAll(new InvWrapper(te), new InvWrapper(ender));
+			UtilMcForge11.moveAll(new InvWrapper(te), new InvWrapper(ender));
 		}
 	}
 	
 	private static void transfer(IInventory ender, IItemHandler cap, boolean mode){
 		if(mode){//ender->cap
-			UtilMcForge10.moveAll(new InvWrapper(ender), cap);
+			UtilMcForge11.moveAll(new InvWrapper(ender), cap);
 		}else{//cap->ender
-			UtilMcForge10.moveAll(cap, new InvWrapper(ender));
+			UtilMcForge11.moveAll(cap, new InvWrapper(ender));
 		}
 	}
 	
