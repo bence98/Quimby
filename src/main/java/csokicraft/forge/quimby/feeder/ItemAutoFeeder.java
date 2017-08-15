@@ -18,7 +18,7 @@ public class ItemAutoFeeder extends Item{
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected){
 		ItemStack inside=getStored(stack);
-		if(inside!=null&&inside.getItem() instanceof ItemFood&&entity instanceof EntityPlayer){
+		if(inside!=null&&!inside.isEmpty()&&inside.getItem() instanceof ItemFood&&entity instanceof EntityPlayer){
 			EntityPlayer player=(EntityPlayer) entity;
 			ItemFood food=(ItemFood) inside.getItem();
 			FoodStats fs=player.getFoodStats();
@@ -40,23 +40,23 @@ public class ItemAutoFeeder extends Item{
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced){
 		ItemStack inside=getStored(stack);
-		if(inside!=null)
+		if(inside!=null&&!inside.isEmpty())
 			tooltip.add("Contains: "+inside.getCount()+"x "+inside.getDisplayName());
 		super.addInformation(stack, playerIn, tooltip, advanced);
 	}
 	
 	public static ItemStack getStored(ItemStack in){
-		if(in==null) return null;
+		if(in==null||in.isEmpty()) return ItemStack.EMPTY;
 		if(in.hasTagCompound()&&in.getTagCompound().hasKey("foodSlot")){
 			return new ItemStack(in.getTagCompound().getCompoundTag("foodSlot"));
 		}
-		return null;
+		return ItemStack.EMPTY;
 	}
 	
 	public static ItemStack setStored(ItemStack in, ItemStack to){
-		if(in==null) return null;
+		if(in==null||in.isEmpty()) return ItemStack.EMPTY;
 		if(!in.hasTagCompound()) in.setTagCompound(new NBTTagCompound());
-		if(to!=null)
+		if(to!=null&&!to.isEmpty())
 			in.getTagCompound().setTag("foodSlot", to.writeToNBT(new NBTTagCompound()));
 		else
 			in.getTagCompound().removeTag("foodSlot");
@@ -64,7 +64,7 @@ public class ItemAutoFeeder extends Item{
 	}
 	
 	public static ItemStack newStack(){
-		return setStored(new ItemStack(Quimby.autoFeeder), null);
+		return setStored(new ItemStack(Quimby.autoFeeder), ItemStack.EMPTY);
 	}
 	
 	/** @return true if the player can eat this food without wasting

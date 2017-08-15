@@ -33,6 +33,6 @@ public class ContainerFeeder extends Container{
 	/** Stop crashing already! This bug has been in the game since at least ModLoader 1.4.7 (possibly 1.3, can't remember) WTF??? */
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index){
-		return null;
+		return ItemStack.EMPTY;
 	}
 }
