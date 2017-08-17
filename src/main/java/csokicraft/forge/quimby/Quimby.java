@@ -45,15 +45,15 @@ public class Quimby
 	
     public static int magnetRadius=7;
     
+    public static final Item[] toReg=new Item[]{autoFeeder, warpingMagnet, disarmWand, chestVacator, rake, shoes, xpWand};
+    
+    
     @EventHandler
     public void preinit(FMLPreInitializationEvent evt){
     	Configuration cfg=new Configuration(evt.getSuggestedConfigurationFile());
     	magnetRadius=cfg.getInt("Warping magnet radius", "misc", 7, 1, 20, "How many blocks the magnet should search in each direction. The total AoE will be a (2r+1)^3 cube where 'r' is this value");
     	
     }
-    
-    public static final Item[] toReg=new Item[]{autoFeeder, warpingMagnet, disarmWand, chestVacator, rake, shoes, xpWand};
-    
     @EventHandler
     public void init(FMLInitializationEvent event)
     {

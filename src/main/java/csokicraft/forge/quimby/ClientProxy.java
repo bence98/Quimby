@@ -18,17 +18,14 @@ import net.minecraftforge.fml.relauncher.Side;
 public class ClientProxy extends CommonProxy{
 	@Override
 	public void registerModels(){
-		ItemModelMesher imm=Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
 		for(Item it:Quimby.toReg){
 			String name=it.getRegistryName().toString();
 			name=name.substring(name.indexOf(':')+1);
 			
 			ModelResourceLocation mdl_loc = new ModelResourceLocation(Quimby.MODID+":"+name, "inventory");
-			imm.register(it, 0, mdl_loc);
 			ModelLoader.setCustomModelResourceLocation(it, 0, mdl_loc);
 		}
 		ModelResourceLocation mdl_loc = new ModelResourceLocation(Quimby.MODID+":itemWarpingMagnet_on");
-		imm.register(Quimby.warpingMagnet, 1, mdl_loc);
 		ModelLoader.setCustomModelResourceLocation(Quimby.warpingMagnet, 1, mdl_loc);
 	}
 	
