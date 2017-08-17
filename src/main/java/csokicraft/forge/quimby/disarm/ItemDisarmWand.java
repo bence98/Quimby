@@ -18,7 +18,7 @@ public class ItemDisarmWand extends Item{
 				ItemStack is=target.getItemStackFromSlot(slot);
 				if(is!=null){
 					target.entityDropItem(is, 0);
-					target.setItemStackToSlot(slot, null);
+					target.setItemStackToSlot(slot, ItemStack.EMPTY);
 				}
 			}
 		}
