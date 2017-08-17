@@ -26,7 +26,7 @@ public class GuiFeeder extends GuiContainer{
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-		this.fontRendererObj.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 96 + 2, 4210752);
+		this.fontRenderer.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 96 + 2, 4210752);
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 	}
 }

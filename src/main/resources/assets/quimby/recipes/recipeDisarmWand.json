@@ -1,0 +1,23 @@
+{
+  "result": {
+    "item": "quimby:itemDisarmWand"
+  },
+  "pattern": [
+    "dsd",
+    " i ",
+    " i "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "i": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    },
+    "d": {
+      "item": "minecraft:diamond_block"
+    },
+    "s": {
+      "item": "minecraft:nether_star"
+    }
+  }
+}

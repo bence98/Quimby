@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "quimby:itemShoes"
+  },
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+        {
+            "item": "minecraft:leather_boots",
+            "data": 0
+        },
+        {
+            "item": "minecraft:iron_boots",
+            "data": 0
+        }
+    ]
+}

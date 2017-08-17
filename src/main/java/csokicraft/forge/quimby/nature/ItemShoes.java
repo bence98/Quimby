@@ -7,6 +7,7 @@ import com.google.common.collect.Multimap;
 import com.mojang.realmsclient.gui.ChatFormatting;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
@@ -111,7 +112,7 @@ public class ItemShoes extends Item{
 	}
 	
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced){
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		ShoeAttribs attribs=getAttributes(stack);
 		
 		if(attribs.getWetness()>75){
@@ -162,7 +163,7 @@ public class ItemShoes extends Item{
 			tooltip.add(ChatFormatting.GREEN+"B: Preserved ("+attribs.getBurnt()+")");
 		}
 		
-		super.addInformation(stack, playerIn, tooltip, advanced);
+		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
 	
 	public static class ShoeAttribs{

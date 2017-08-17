@@ -31,9 +31,9 @@ public class PacketXpWand implements IMessage {
 	public void toBytes(ByteBuf buf){
 		buf.writeInt(hand.ordinal());
 		
-		buf.writeDouble(lookVec.xCoord);
-		buf.writeDouble(lookVec.yCoord);
-		buf.writeDouble(lookVec.zCoord);
+		buf.writeDouble(lookVec.x);
+		buf.writeDouble(lookVec.y);
+		buf.writeDouble(lookVec.z);
 	}
 
 }

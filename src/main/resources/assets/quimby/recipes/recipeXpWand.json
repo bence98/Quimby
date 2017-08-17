@@ -1,0 +1,24 @@
+{
+  "result": {
+    "item": "quimby:itemXpWand"
+  },
+  "pattern": [
+    "r",
+    "w",
+    "k"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "r": {
+      "type": "forge:ore_dict",
+      "ore": "dustRedstone"
+    },
+    "w": {
+      "item": "quimby:itemDisarmWand"
+    },
+    "k": {
+      "type": "forge:ore_dict",
+      "ore": "plankWood"
+    }
+  }
+}

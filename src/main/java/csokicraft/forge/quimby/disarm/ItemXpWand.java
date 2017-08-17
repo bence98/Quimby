@@ -4,6 +4,7 @@ import java.util.List;
 
 import csokicraft.forge.quimby.Quimby;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.*;
@@ -28,20 +29,20 @@ public class ItemXpWand extends Item{
 	}
 	
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced){
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(I18n.format("chat.xpwand.get", getMode(stack).localisedName()));
-		super.addInformation(stack, playerIn, tooltip, advanced);
+		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
 	
 	public static void shootXp(EntityPlayer p, ItemStack is, Vec3d lookVec){
 		World w=p.world;
 		int qty=Math.min(p.experienceTotal, getMode(is).getXpAmount());
 		removeXp(p, qty);
-		double  newX=p.posX+lookVec.xCoord,
-				newY=p.posY+lookVec.yCoord+p.eyeHeight,
-				newZ=p.posZ+lookVec.zCoord;
+		double  newX=p.posX+lookVec.x,
+				newY=p.posY+lookVec.y+p.eyeHeight,
+				newZ=p.posZ+lookVec.z;
 		EntityXPOrb ent=new EntityXPOrb(w, newX, newY, newZ, qty);
-		ent.setVelocity(lookVec.xCoord, lookVec.yCoord, lookVec.zCoord);
+		ent.setVelocity(lookVec.x, lookVec.y, lookVec.z);
 		w.spawnEntity(ent);
 	}
 	
@@ -54,7 +55,7 @@ public class ItemXpWand extends Item{
 		}else{
 			//new xp=old max xp - removed xp
 			float newXp=p.xpBarCap()-qty;
-			p.removeExperienceLevel(1);
+			p.addExperienceLevel(-1);
 			p.experience=newXp/p.xpBarCap();
 		}
 		p.experienceTotal-=qty;

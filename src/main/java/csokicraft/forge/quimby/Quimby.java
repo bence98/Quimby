@@ -8,18 +8,22 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.*;
 import net.minecraft.item.*;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.*;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.registries.IForgeRegistry;
 
 @Mod(modid = Quimby.MODID, version = Quimby.VERSION, dependencies="required-after:csokicraftutil@1.3+")
+@EventBusSubscriber
 public class Quimby
 {
     public static final String MODID = "quimby";
@@ -48,62 +52,25 @@ public class Quimby
     	
     }
     
+    private static final Item[] toReg=new Item[]{autoFeeder, warpingMagnet, disarmWand, chestVacator, rake, shoes, xpWand};
+    
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
-    	Item[] toReg=new Item[]{autoFeeder, warpingMagnet, disarmWand, chestVacator, rake, shoes, xpWand};
     	net.registerMessage(HandlerVacator.class, PacketVacator.class, PacketVacator.ID, Side.SERVER);
     	net.registerMessage(HandlerXpWand.class, PacketXpWand.class, PacketXpWand.ID, Side.SERVER);
     	NetworkRegistry.INSTANCE.registerGuiHandler(inst, proxy);
-    	
-        for(Item reg:toReg)
-        	GameRegistry.register(reg);
         
-        RakeRecipes.addDefaultRecipes();
-        
-        GameRegistry.addRecipe(new ShapedOreRecipe(
-        		ItemAutoFeeder.newStack(),
-        		"ipi", "dad", "ipi",
-        		'i', "ingotIron",
-        		'p', Blocks.PISTON,
-        		'd', Blocks.DISPENSER,
-        		'a', Items.GOLDEN_APPLE
-        ));
-        GameRegistry.addRecipe(new ShapedOreRecipe(
-        		warpingMagnet,
-        		"i i", "iri", "iii",
-        		'i', "ingotIron",
-        		'r', Blocks.REDSTONE_BLOCK
-        ));
-        GameRegistry.addRecipe(new ShapedOreRecipe(
-        		disarmWand,
-        		"dsd", " i ", " i ",
-        		'i', "ingotIron",
-        		's', Items.NETHER_STAR,
-        		'd', Blocks.DIAMOND_BLOCK
-        ));
-        GameRegistry.addRecipe(new ShapedOreRecipe(
-        		chestVacator,
-        		"c", "w", "e",
-        		'c', "chestWood",
-        		'w', disarmWand,
-        		'e', Blocks.ENDER_CHEST
-        ));
-        GameRegistry.addRecipe(new ShapedOreRecipe(
-        		xpWand,
-        		"r", "w", "k",
-        		'r', "dustRedstone",
-        		'w', disarmWand,
-        		'k', "plankWood"
-        ));
-        GameRegistry.addRecipe(new ShapedOreRecipe(
-        		rake,
-        		"i i", "sis", " s ",
-        		'i', "ingotIron",
-        		's', "stickWood"
-        ));
-        GameRegistry.addShapelessRecipe(new ItemStack(shoes), Items.IRON_BOOTS, Items.LEATHER_BOOTS);
+    	RakeRecipes.addDefaultRecipes();
         
         proxy.registerModels(toReg);
+    }
+    
+    @SubscribeEvent
+    public static void registerItems(final RegistryEvent.Register<Item> event){
+    	IForgeRegistry<Item> registry=event.getRegistry();
+    	
+        for(Item reg:toReg)
+        	registry.register(reg);
     }
 }

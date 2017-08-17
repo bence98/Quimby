@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "quimby:itemWarpingMagnet"
+  },
+  "pattern": [
+    "i i",
+    "iri",
+    "iii"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "r": {
+      "type": "forge:ore_dict",
+      "ore": "dustRedstone"
+    },
+    "i": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    }
+  }
+}

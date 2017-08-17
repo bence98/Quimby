@@ -3,6 +3,7 @@ package csokicraft.forge.quimby.feeder;
 import java.util.*;
 
 import csokicraft.forge.quimby.*;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.*;
@@ -13,6 +14,12 @@ import net.minecraft.world.World;
 public class ItemAutoFeeder extends Item{
 	public ItemAutoFeeder(){
 		maxStackSize=1;
+	}
+	
+	@Override
+	public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn){
+		stack = setStored(stack, ItemStack.EMPTY);
+		super.onCreated(stack, worldIn, playerIn);
 	}
 	
 	@Override
@@ -38,11 +45,11 @@ public class ItemAutoFeeder extends Item{
 	}
 	
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced){
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		ItemStack inside=getStored(stack);
 		if(inside!=null&&!inside.isEmpty())
 			tooltip.add("Contains: "+inside.getCount()+"x "+inside.getDisplayName());
-		super.addInformation(stack, playerIn, tooltip, advanced);
+		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
 	
 	public static ItemStack getStored(ItemStack in){
@@ -61,10 +68,6 @@ public class ItemAutoFeeder extends Item{
 		else
 			in.getTagCompound().removeTag("foodSlot");
 		return in;
-	}
-	
-	public static ItemStack newStack(){
-		return setStored(new ItemStack(Quimby.autoFeeder), ItemStack.EMPTY);
 	}
 	
 	/** @return true if the player can eat this food without wasting

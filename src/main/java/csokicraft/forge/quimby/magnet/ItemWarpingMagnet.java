@@ -3,6 +3,7 @@ package csokicraft.forge.quimby.magnet;
 import java.util.*;
 
 import csokicraft.forge.quimby.Quimby;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.*;
 import net.minecraft.entity.item.*;
 import net.minecraft.entity.player.EntityPlayer;
@@ -44,11 +45,11 @@ public class ItemWarpingMagnet extends Item{
 	}
 	
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced){
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if(stack.getItemDamage()==0)
 			tooltip.add("Inactive. Right-click to activate!");
 		else
 			tooltip.add("Active. Right-click to deactivate!");
-		super.addInformation(stack, playerIn, tooltip, advanced);
+		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
 }

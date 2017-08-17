@@ -1,5 +1,26 @@
 Changelog:
-Build 2414:
+Build 2419:
+	malte0811:
+		[1.12] Allow the server to handle item-block interaction if onItemUse
+		doesn not return PASS (#3967)
+
+Build 1.12-14.21.1.2418:
+	Madsthunder: Allow support for custom Shields and Shield disabling weapons.
+
+Build 1.12-14.21.1.2417:
+	diesieben07: Ignore fortune for anything but seeds in crops (#4160)
+	ichttt: Log a warning if a coremod does not follow best practices (#4146)
+	python0429: Make Optional.Interface repeatable (#4138)
+
+Build 1.12-14.21.1.2416:
+	xalcon: Added support for vanilla "nbt strings" in json recipes (#4113)
+
+Build 1.12-14.21.1.2415:
+	LexManos:
+		Fix tripwire statemap not being complete when mappings change. Closes
+		#3924
+
+Build 1.11.2-13.20.1.2414:
 	mezz: Fix unblockable damage being blocked by armor. (#3933)
 
 Build 1.12-14.21.1.2413:
