@@ -52,7 +52,7 @@ public class Quimby
     	
     }
     
-    private static final Item[] toReg=new Item[]{autoFeeder, warpingMagnet, disarmWand, chestVacator, rake, shoes, xpWand};
+    public static final Item[] toReg=new Item[]{autoFeeder, warpingMagnet, disarmWand, chestVacator, rake, shoes, xpWand};
     
     @EventHandler
     public void init(FMLInitializationEvent event)
@@ -62,8 +62,6 @@ public class Quimby
     	NetworkRegistry.INSTANCE.registerGuiHandler(inst, proxy);
         
     	RakeRecipes.addDefaultRecipes();
-        
-        proxy.registerModels(toReg);
     }
     
     @SubscribeEvent
