@@ -27,7 +27,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class Quimby
 {
     public static final String MODID = "quimby";
-    public static final String VERSION = "1.3.6";
+    public static final String VERSION = "1.3.7";
     @Instance
     public static Quimby inst;
     @SidedProxy(clientSide="csokicraft.forge.quimby.ClientProxy", serverSide="csokicraft.forge.quimby.CommonProxy")
@@ -35,13 +35,13 @@ public class Quimby
     
     public static SimpleNetworkWrapper net=new SimpleNetworkWrapper(MODID);
     
-    public static Item  autoFeeder = new ItemAutoFeeder().setCreativeTab(CreativeTabs.FOOD).setUnlocalizedName("itemAutoFeeder").setRegistryName("itemAutoFeeder"),
-    					warpingMagnet = new ItemWarpingMagnet().setCreativeTab(CreativeTabs.TOOLS).setUnlocalizedName("itemWarpingMagnet").setRegistryName("itemWarpingMagnet"),
-    					disarmWand = new ItemDisarmWand().setCreativeTab(CreativeTabs.TOOLS).setUnlocalizedName("itemDisarmWand").setRegistryName("itemDisarmWand"),
-    					chestVacator = new ItemChestVacator().setCreativeTab(CreativeTabs.TOOLS).setUnlocalizedName("itemChestVacator").setRegistryName("itemChestVacator"),
-    					rake=new ItemRake().setCreativeTab(CreativeTabs.TOOLS).setUnlocalizedName("itemRake").setRegistryName("itemRake"),
-    					shoes=new ItemShoes().setCreativeTab(CreativeTabs.COMBAT).setUnlocalizedName("itemShoes").setRegistryName("itemShoes"),
-    					xpWand=new ItemXpWand().setCreativeTab(CreativeTabs.TOOLS).setUnlocalizedName("itemXpWand").setRegistryName("itemXpWand");
+    public static Item  autoFeeder = new ItemAutoFeeder().setCreativeTab(CreativeTabs.FOOD).setUnlocalizedName("itemautofeeder").setRegistryName("itemautofeeder"),
+    					warpingMagnet = new ItemWarpingMagnet().setCreativeTab(CreativeTabs.TOOLS).setUnlocalizedName("itemwarpingmagnet").setRegistryName("itemwarpingmagnet"),
+    					disarmWand = new ItemDisarmWand().setCreativeTab(CreativeTabs.TOOLS).setUnlocalizedName("itemdisarmwand").setRegistryName("itemdisarmwand"),
+    					chestVacator = new ItemChestVacator().setCreativeTab(CreativeTabs.TOOLS).setUnlocalizedName("itemchestvacator").setRegistryName("itemchestvacator"),
+    					rake=new ItemRake().setCreativeTab(CreativeTabs.TOOLS).setUnlocalizedName("itemrake").setRegistryName("itemrake"),
+    					shoes=new ItemShoes().setCreativeTab(CreativeTabs.COMBAT).setUnlocalizedName("itemshoes").setRegistryName("itemshoes"),
+    					xpWand=new ItemXpWand().setCreativeTab(CreativeTabs.TOOLS).setUnlocalizedName("itemxpwand").setRegistryName("itemxpwand");
 	
     public static int magnetRadius=7;
     

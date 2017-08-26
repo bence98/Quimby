@@ -1,11 +1,11 @@
 
-item.itemAutoFeeder.name=Automatic Nourishing Unit
-item.itemWarpingMagnet.name=Warping Magnet
-item.itemDisarmWand.name=Wand of Expelliarmus
-item.itemChestVacator.name=Chest Vacator
-item.itemRake.name=Gardening rake
-item.itemShoes.name=Trekking shoes (WIP)
-item.itemXpWand.name=Wand of Experience
+item.itemautofeeder.name=Automatic Nourishing Unit
+item.itemwarpingmagnet.name=Warping Magnet
+item.itemdisarmwand.name=Wand of Expelliarmus
+item.itemchestvacator.name=Chest Vacator
+item.itemrake.name=Gardening rake
+item.itemshoes.name=Trekking shoes (WIP)
+item.itemxpwand.name=Wand of Experience
 
 chat.xpwand.set=Set mode to %s
 chat.xpwand.get=Mode: %s

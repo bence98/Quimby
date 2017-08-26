@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "quimby:items/disarmWand"
+        "layer0": "quimby:items/warpingmagnet_on"
     }
 }

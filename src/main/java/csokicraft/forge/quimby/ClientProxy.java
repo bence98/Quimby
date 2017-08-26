@@ -25,7 +25,7 @@ public class ClientProxy extends CommonProxy{
 			ModelResourceLocation mdl_loc = new ModelResourceLocation(Quimby.MODID+":"+name, "inventory");
 			ModelLoader.setCustomModelResourceLocation(it, 0, mdl_loc);
 		}
-		ModelResourceLocation mdl_loc = new ModelResourceLocation(Quimby.MODID+":itemWarpingMagnet_on");
+		ModelResourceLocation mdl_loc = new ModelResourceLocation(Quimby.MODID+":itemwarpingmagnet_on");
 		ModelLoader.setCustomModelResourceLocation(Quimby.warpingMagnet, 1, mdl_loc);
 	}
 	
