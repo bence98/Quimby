@@ -23,7 +23,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 public class Quimby
 {
     public static final String MODID = "quimby";
-    public static final String VERSION = "1.3.5";
+    public static final String VERSION = "1.3.7";
     @Instance
     public static Quimby inst;
     @SidedProxy(clientSide="csokicraft.forge.quimby.ClientProxy", serverSide="csokicraft.forge.quimby.CommonProxy")
